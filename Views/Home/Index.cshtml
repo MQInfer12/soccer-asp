@@ -58,7 +58,8 @@
             @foreach (var tournament in ViewBag.Tournaments)
             {
                 <div class="flex flex-col bg-gray-800 border-t-2 border-primary-900/40">
-                    <button class="flex justify-between items-center px-10 py-4 border-b border-b-gray-700">
+                    <input id="@tournament.Id" type="checkbox" class="hidden peer" />
+                    <label for="@tournament.Id" class="flex justify-between items-center px-10 py-4 border-b border-b-gray-700 peer-checked:[&_.chevron]:rotate-180">
                         <div class="flex items-center gap-4">
                         <span class="w-10 p-2 aspect-square bg-white rounded-xl flex items-center justify-center !text-primary-500">
                             <svg
@@ -91,14 +92,14 @@
                                 stroke-width="2"
                                 stroke-linecap="round"
                                 stroke-linejoin="round"
-                                class="icon icon-tabler icons-tabler-outline icon-tabler-chevron-down"
+                                class="chevron icon icon-tabler icons-tabler-outline icon-tabler-chevron-down rotate-0 transition-all duration-300"
                             >
                                 <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                                 <path d="M6 9l6 6l6 -6" />
                             </svg>
                         </div>
-                    </button>
-                    <div class="grid overflow-hidden transition-[grid-template-rows] duration-300 grid-rows-[1fr]">
+                    </label>
+                    <div class="grid overflow-hidden transition-[grid-template-rows] duration-300 grid-rows-[0fr] peer-checked:grid-rows-[1fr]">
                         <div class="overflow-hidden">
                             @foreach (var dateGroup in tournament.GamesByDate)
                             {

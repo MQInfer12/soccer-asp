@@ -34,9 +34,10 @@ public class HomeController : Controller
             .ToList()
             .Select(t => new
             {
+                t.Id,
                 t.Name,
                 t.Description,
-                GamesCount = t.Games.Count,
+                GamesCount = t.Games.Where(g => !date.HasValue || g.Date == date.Value).ToList().Count,
                 GamesByDate = t.Games
                     .Where(g => !date.HasValue || g.Date == date.Value)
                     .GroupBy(g => g.Date)
