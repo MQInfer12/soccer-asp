@@ -1,0 +1,45 @@
+@model asp_test.Models.Player
+
+<div class="flex flex-col flex-1 overflow-hidden gap-6 p-10 max-md:p-4">
+    <h1 class="text-center font-extrabold text-4xl">New player</h1>
+    <div class="flex flex-col items-center">
+        <form asp-action="Create" method="post" class="w-80 flex flex-col gap-4">
+            <div class="flex flex-col gap-1" class="form-group">
+                <label class="text-sm" for="Name">Name</label>
+                <input class="bg-gray-900 border border-gray-800 rounded-md outline-0 ring-0 focus:ring-1 ring-primary-500 p-2 transition-all" asp-for="Name" class="form-control" />
+                <span class="text-sm text-rose-600" asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="flex flex-col gap-1" class="form-group">
+                <label class="text-sm" for="Position">Position</label>
+                <select class="bg-gray-900 border border-gray-800 rounded-md outline-0 ring-0 focus:ring-1 ring-primary-500 p-2 transition-all" asp-for="Position" class="form-control">
+                    <option value="">Select a position</option>
+                    <option value="Goalkeeper">Goalkeeper</option>
+                    <option value="Left forward">Left forward</option>
+                    <option value="Central forward">Central forward</option>
+                    <option value="Right forward">Right forward</option>
+                    <option value="Left midfield">Left midfield</option>
+                    <option value="Central midfield">Central midfield</option>
+                    <option value="Right midfield">Right midfield</option>
+                    <option value="Left back">Left back</option>
+                    <option value="Central back">Central back</option>
+                    <option value="Right back">Right back</option>
+                </select>
+                <span class="text-sm text-rose-600" asp-validation-for="Position" class="text-danger"></span>
+            </div>
+            <div class="flex flex-col gap-1" class="form-group">
+                <label class="text-sm" for="Number">Dorsal</label>
+                <input type="number" class="bg-gray-900 border border-gray-800 rounded-md outline-0 ring-0 focus:ring-1 ring-primary-500 p-2 transition-all" asp-for="Number" class="form-control" />
+                <span class="text-sm text-rose-600" asp-validation-for="Number" class="text-danger"></span>
+            </div>
+            <div class="flex flex-col gap-1" class="form-group">
+                <label class="text-sm" for="Date">Date</label>
+                <input type="date" class="bg-gray-900 border border-gray-800 rounded-md outline-0 ring-0 focus:ring-1 ring-primary-500 p-2 transition-all" asp-for="Date" class="form-control" />
+                <span class="text-sm text-rose-600" asp-validation-for="Date" class="text-danger"></span>
+            </div>
+            <button class="bg-primary-500 py-2 px-10 rounded-md font-medium hover:opacity-80 transition-all duration-300" type="submit" class="btn btn-primary">Save</button>
+        </form>
+    </div>
+    <div class="flex justify-center">
+        <a class="bg-primary-500 py-2 px-10 rounded-md font-medium hover:opacity-80 transition-all duration-300" asp-action="Index">Go back</a>
+    </div>
+</div>

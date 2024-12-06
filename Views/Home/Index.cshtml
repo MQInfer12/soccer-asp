@@ -1,0 +1,164 @@
+﻿@model asp_test.Models.Banner
+
+<section class="flex flex-col pb-10 px-10 max-md:px-4 max-md:pb-4 overflow-auto">
+    @if(Model != null) 
+    {
+        <div class="bg-primary-500 rounded-2xl min-h-80 max-sm:min-h-[420px] flex justify-center flex-col relative overflow-hidden isolate px-8 mt-10 max-md:mt-4">
+        <header class="flex gap-4 items-center px-4 py-4 z-10 flex-wrap">
+            <div class="bg-gray-950 px-2 py-2 min-w-12 max-w-12 aspect-square rounded-xl border-2 border-primary-400">
+                <img
+                    src="@Model.Club1.Shield"
+                    class="w-full h-full"
+                />
+            </div>
+            <p>vs</p>
+            <div class="bg-gray-950 px-2 py-2 min-w-12 max-w-12 aspect-square rounded-xl border-2 border-primary-400">
+                <img
+                    src="@Model.Club2.Shield"
+                    class="w-full h-full"
+                />
+            </div>
+            <div class="h-12 bg-gray-950 px-2 py-2 rounded-xl flex items-center border-2 border-primary-400">
+                <p class="whitespace-nowrap">Today, 08:30 PM</p>
+            </div>
+        </header>
+        <main class="flex px-4 flex-col max-w-[560px] gap-2 py-4 bg-primary-500/80 max-sm:bg-primary-950/90 transition-all duration-300 rounded-xl">
+            <span class="font-medium">Superliga</span>
+            <strong class="font-extrabold text-3xl text-balance">
+                <span>@Model.Club1.Name</span> vs <span>@Model.Club2.Name</span>
+            </strong>
+            <p class="text-sm opacity-90">
+                @Model.Description
+            </p>
+        </main>
+        <img class="h-full absolute right-0 bottom-0 -z-10 object-cover" src="https://media.discordapp.net/attachments/755955428923277323/1314061241693769809/Midtjylland-vs-Copenhagen-prediction.png?ex=67526666&is=675114e6&hm=dd9d1a7f5a649cb006c899fa2ec8647d43c9127720145e71d0102e9bdca5b960&=&format=webp&quality=lossless&width=727&height=671" />
+        <img class="h-full absolute -left-32 bottom-20 opacity-60 -z-20" src="https://media.discordapp.net/attachments/755955428923277323/1313633729482330193/fuchibol.png?ex=675229bf&is=6750d83f&hm=cde196f1bb826dbca0da5cd618e59ef99a2556a734c4d1ae09c287381b00ce18&=&format=webp&quality=lossless&width=480&height=468" />
+        </div>
+    }
+    <div class="flex justify-between items-center sticky top-0 bg-gray-950 py-6 z-10">
+        <strong class="text-2xl font-extrabold">Tournaments</strong>
+        <form id="dateForm" method="get" action="" class="flex flex-col items-center gap-2">
+            <p class="opacity-80 flex items-center gap-2 text-xs">
+                @ViewBag.FilteredDate
+            </p>
+            <input 
+                type="date" 
+                name="date" 
+                value="@ViewBag.FilteredDateValue" 
+                class="bg-gray-800 text-sm text-gray-300 px-4 py-2 rounded-md border border-gray-600 focus:outline-none focus:ring focus:ring-primary-500"
+                onchange="document.getElementById('dateForm').submit();" 
+            />
+        </form>
+    </div>
+    <div class="flex flex-col">
+        <div class="flex flex-col overflow-hidden rounded-xl">
+            @if (ViewBag.Tournaments.Count == 0) {
+                <p class="text-center opacity-60 py-4">No tournaments available.</p>
+            }
+            @foreach (var tournament in ViewBag.Tournaments)
+            {
+                <div class="flex flex-col bg-gray-800 border-t-2 border-primary-900/40">
+                    <button class="flex justify-between items-center px-10 py-4 border-b border-b-gray-700">
+                        <div class="flex items-center gap-4">
+                        <span class="w-10 p-2 aspect-square bg-white rounded-xl flex items-center justify-center !text-primary-500">
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="24"
+                                height="24"
+                                viewBox="0 0 24 24"
+                                fill="currentColor"
+                                class="icon icon-tabler icons-tabler-filled icon-tabler-trophy"
+                            >
+                                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                <path d="M17 3a1 1 0 0 1 .993 .883l.007 .117v2.17a3 3 0 1 1 0 5.659v.171a6.002 6.002 0 0 1 -5 5.917v2.083h3a1 1 0 0 1 .117 1.993l-.117 .007h-8a1 1 0 0 1 -.117 -1.993l.117 -.007h3v-2.083a6.002 6.002 0 0 1 -4.996 -5.692l-.004 -.225v-.171a3 3 0 0 1 -3.996 -2.653l-.003 -.176l.005 -.176a3 3 0 0 1 3.995 -2.654l-.001 -2.17a1 1 0 0 1 1 -1h10zm-12 5a1 1 0 1 0 0 2a1 1 0 0 0 0 -2zm14 0a1 1 0 1 0 0 2a1 1 0 0 0 0 -2z" />
+                            </svg>
+                        </span>
+                        <div class="flex flex-col items-start">
+                            <strong>
+                            @tournament.Name <span class="opacity-60">(@tournament.GamesCount Matches)</span>
+                            </strong>
+                            <small class="text-xs opacity-80">@tournament.Description</small>
+                        </div>
+                        </div>
+                        <div>
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="24"
+                                height="24"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-width="2"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                class="icon icon-tabler icons-tabler-outline icon-tabler-chevron-down"
+                            >
+                                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                <path d="M6 9l6 6l6 -6" />
+                            </svg>
+                        </div>
+                    </button>
+                    <div class="grid overflow-hidden transition-[grid-template-rows] duration-300 grid-rows-[1fr]">
+                        <div class="overflow-hidden">
+                            @foreach (var dateGroup in tournament.GamesByDate)
+                            {
+                                <header class="h-10 flex justify-between px-10 items-center">
+                                    <p class="text-sm opacity-80">Matches</p>
+                                    <div class="opacity-80 flex items-center gap-2 text-xs">
+                                        @dateGroup.Date
+                                        <div class="h-5 aspect-square">
+                                            <svg
+                                                xmlns="http://www.w3.org/2000/svg"
+                                                width="24"
+                                                height="24"
+                                                viewBox="0 0 24 24"
+                                                fill="currentColor"
+                                                class="icon icon-tabler icons-tabler-filled icon-tabler-calendar"
+                                            >
+                                                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                                <path d="M16 2a1 1 0 0 1 .993 .883l.007 .117v1h1a3 3 0 0 1 2.995 2.824l.005 .176v12a3 3 0 0 1 -2.824 2.995l-.176 .005h-12a3 3 0 0 1 -2.995 -2.824l-.005 -.176v-12a3 3 0 0 1 2.824 -2.995l.176 -.005h1v-1a1 1 0 0 1 1.993 -.117l.007 .117v1h6v-1a1 1 0 0 1 1 -1zm3 7h-14v9.625c0 .705 .386 1.286 .883 1.366l.117 .009h12c.513 0 .936 -.53 .993 -1.215l.007 -.16v-9.625z" />
+                                                <path d="M12 12a1 1 0 0 1 .993 .883l.007 .117v3a1 1 0 0 1 -1.993 .117l-.007 -.117v-2a1 1 0 0 1 -.117 -1.993l.117 -.007h1z" />
+                                            </svg>
+                                        </div>
+                                    </div>
+                                </header>
+                                <main class="flex flex-col bg-gray-900">
+                                    @foreach (var game in dateGroup.Games)
+                                    {
+                                        <div class="flex items-center gap-8 py-3 justify-center border-b border-gray-800 max-sm:flex-col max-sm:gap-2">
+                                            <div class="w-56 flex items-center gap-4 @(game.WinnerId != null && game.WinnerId != game.Club1.Id ? "opacity-30" : "")">
+                                                <div class="bg-gray-800 px-2 py-2 min-w-16 max-w-16 aspect-square rounded-xl">
+                                                <img
+                                                    src="@game.Club1.Shield"
+                                                    class="w-full h-full object-contain"
+                                                />
+                                                </div>
+                                                <p class="flex-1 whitespace-nowrap overflow-hidden text-ellipsis @(game.WinnerId != null && game.WinnerId != game.Club1.Id ? "line-through" : "")">
+                                                @game.Club1.Name
+                                                </p>
+                                            </div>
+                                            <div class="bg-gray-800 px-2 py-2 w-10 aspect-square rounded-full flex items-center justify-center max-sm:w-6 max-sm:text-[10px]">
+                                                VS
+                                            </div>
+                                            <div class="w-56 flex items-center gap-4 justify-end max-sm:flex-row-reverse @(game.WinnerId != null && game.WinnerId != game.Club2.Id ? "opacity-30" : "")">
+                                                <p class="flex-1 text-end whitespace-nowrap overflow-hidden text-ellipsis max-sm:text-start @(game.WinnerId != null && game.WinnerId != game.Club2.Id ? "line-through" : "")">
+                                                @game.Club2.Name
+                                                </p>
+                                                <div class="bg-gray-800 px-2 py-2 min-w-16 max-w-16 aspect-square rounded-xl">
+                                                <img
+                                                    class="w-full h-full object-contain"
+                                                    src="@game.Club2.Shield"
+                                                />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    }
+                                </main>
+                            }
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</section>

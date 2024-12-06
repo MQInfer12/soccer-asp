@@ -1,0 +1,12 @@
+{
+  "name": "asp-test",
+  "version": "1.0.0",
+  "description": "asp net core football app test",
+  "main": "index.js",
+  "scripts": {
+    "css:build": "npx tailwindcss -i ./wwwroot/css/site.css -o ./wwwroot/css/styles.css --minify",
+    "watch": "npx tailwindcss -i ./wwwroot/css/site.css -o ./wwwroot/css/styles.css --minify --watch"
+  },
+  "author": "",
+  "license": "ISC"
+}

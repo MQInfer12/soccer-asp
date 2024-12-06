@@ -1,0 +1,26 @@
+@model asp_test.Models.Player
+
+<div class="flex flex-col flex-1 overflow-hidden gap-6 p-10 max-md:p-4">
+    <h1 class="text-center font-extrabold text-4xl">Player detail</h1>
+    <h4 class="text-center font-bold text-2xl py-4">@Model.Name</h4>
+    <div class="flex flex-col items-center gap-2">
+        <div class="flex w-80 justify-between">
+            <dt class="font-bold">Position</dt>
+            <dd class="opacity-80">@Model.Position</dd>
+        </div>
+
+        <div class="flex w-80 justify-between">
+            <dt class="font-bold">Dorsal</dt>
+            <dd class="opacity-80">@Model.Number</dd>
+        </div>
+
+        <div class="flex w-80 justify-between">
+            <dt class="font-bold">Date of birth</dt>
+            <dd class="opacity-80">@Model.Date.ToShortDateString()</dd>
+        </div>
+    </div>
+
+    <div class="flex justify-center">
+        <a class="bg-primary-500 py-2 px-10 rounded-md font-medium hover:opacity-80 transition-all duration-300" asp-action="Index">Go back</a>
+    </div>
+</div>

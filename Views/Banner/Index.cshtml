@@ -1,0 +1,41 @@
+@model asp_test.Models.Banner
+
+<div class="flex flex-col flex-1 overflow-hidden gap-6 p-10 max-md:p-4">
+  <h1 class="text-center font-extrabold text-4xl">Edit Banner</h1>
+  <div class="flex flex-col items-center gap-6">
+    <form asp-action="SaveBanner" method="post" class="w-80 flex flex-col gap-4">
+      <div class="flex flex-col gap-1">
+          <label class="text-sm" for="club1Id">Team 1</label>
+          <select asp-for="Club1Id" class="bg-gray-900 border border-gray-800 rounded-md outline-0 ring-0 focus:ring-1 ring-primary-500 p-2 transition-all">
+              <option value="">Select a team</option>
+              @foreach (var club in ViewBag.Clubs as List<asp_test.Models.Club> ?? new List<Club>())
+              {
+                  <option value="@club.Id">@club.Name</option>
+              }
+          </select>
+          @Html.ValidationMessageFor(model => model.Club1Id, "", new { @class = "text-sm text-rose-600" })
+      </div>
+      <div class="flex flex-col gap-1">
+        <label class="text-sm" for="club2Id">Team 2</label>
+        <select asp-for="Club2Id" class="bg-gray-900 border border-gray-800 rounded-md outline-0 ring-0 focus:ring-1 ring-primary-500 p-2 transition-all">
+            <option value="">Select a team</option>
+            @foreach (var club in ViewBag.Clubs as List<asp_test.Models.Club> ?? new List<Club>())
+            {
+              <option value="@club.Id">@club.Name</option>
+            }
+        </select>
+        @Html.ValidationMessageFor(model => model.Club2Id, "", new { @class = "text-sm text-rose-600" })
+      </div>
+      <div class="flex flex-col gap-1">
+          <label for="Description">Description</label>
+          <textarea asp-for="Description" rows="3" class="bg-gray-900 border border-gray-800 rounded-md outline-0 ring-0 focus:ring-1 ring-primary-500 p-2 transition-all resize-none"></textarea>
+          @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-sm text-rose-600" })
+      </div>
+      <button class="bg-primary-500 py-2 px-10 rounded-md font-medium hover:opacity-80 transition-all duration-300" type="submit" class="btn btn-primary">Save</button>
+    </form>
+    <form asp-action="DeleteConfirmed" method="post" class="flex justify-center gap-4">
+      <input type="hidden" asp-for="Id" />
+      <button class="bg-rose-500 py-2 px-10 rounded-md font-medium hover:opacity-80 transition-all duration-300" type="submit" class="btn btn-danger">Delete</button>
+    </form>
+  </div>
+</div>
